@@ -27,6 +27,11 @@ public class UserController {
     @PostMapping("/users")
     public String formPost(Model model, ServerWebExchange serverWebExchange){
 
+//        model.addAttribute("users", apiService
+//                .getUsers(serverWebExchange
+//                .getFormData()
+//                .map(data -> new Integer(data.getFirst("limit")))));
+
         serverWebExchange.getFormData()
                 .map(map -> map.get("limit").get(0))
                 .map(Integer::parseInt)
