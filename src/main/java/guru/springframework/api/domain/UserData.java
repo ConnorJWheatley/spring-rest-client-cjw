@@ -14,6 +14,7 @@ public class UserData {
             User user = new User();
             user.setId(Integer.valueOf(apiUser.get("id").toString()));
             user.setName((String) apiUser.get("name"));
+            user.setUsername((String) apiUser.get("username"));
             user.setEmail((String) apiUser.get("email"));
             user.setAddress(ingestAddress((LinkedHashMap<String, Object>) apiUser.get("address")));
             user.setPhone((String) apiUser.get("phone"));
