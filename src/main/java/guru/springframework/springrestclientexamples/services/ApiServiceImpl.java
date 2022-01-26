@@ -5,6 +5,8 @@ import guru.springframework.api.domain.UserData;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+
+import java.util.LinkedHashMap;
 import java.util.List;
 
 @Service
@@ -18,7 +20,13 @@ public class ApiServiceImpl implements ApiService {
 
     @Override
     public List<User> getUsers(Integer limit) {
-        UserData userData = restTemplate.getForObject("https://private-anon-7b1100723b-apifaketory.apiary-mock.com/api/user?limit=" + limit, UserData.class);
+
+        List<LinkedHashMap<String, Object>> apiData = restTemplate.getForObject("https://jsonplaceholder.typicode.com/users?_limit=" + limit, List.class);
+
+        UserData userData = new UserData();
+
+        userData.ingestApiUsers(apiData);
+
         return userData.getData();
     }
 }
